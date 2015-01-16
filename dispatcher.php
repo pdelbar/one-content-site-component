@@ -17,7 +17,7 @@ class OneDispatcherJoomla extends One_Dispatcher
 			'id' => null,
 			'scheme' => null,
 			'task' => null,
-			'view' => null,
+			'oview' => null,
 			'parseContentPlugins' => false,
 		);
 

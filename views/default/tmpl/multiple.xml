@@ -23,7 +23,7 @@
                    clear="false"
                    description="Task to use for the current menu-item"
                     />
-            <field name="view" type="text"
+            <field name="oview" type="text"
                    label="View"
                    required="false"
                    edit="true"
