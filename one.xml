@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.0" method="upgrade">
+
+	<name>One|Content</name>
+	<author>Paul Delbar</author>
+	<creationDate>January 2015</creationDate>
+	<copyright>Copyright (C) 2015 Paul Delbar. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>paul.delbar@gmail.com</authorEmail>
+	<authorUrl>pauldelbar.com</authorUrl>
+	<version>3.0</version>
+	<description>One|Content</description>
+
+	<files folder="site">
+		<filename>dispatcher.php</filename>
+		<filename>index.html</filename>
+		<filename>LICENSE</filename>
+		<filename>one.php</filename>
+		<filename>README.md</filename>
+		<filename>router.php</filename>
+		<folder>controllers</folder>
+		<folder>fields</folder>
+		<folder>helpers</folder>
+		<folder>languages</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+
+    <languages folder="site">        
+		<language tag="en-GB">languages/en-GB/en-GB.com_one.ini</language>
+		<language tag="nl-NL">languages/nl-NL/nl-NL.com_one.ini</language>
+    </languages>
+
+	<administration>
+		<menu>One</menu>
+	</administration>
+
+</extension>
