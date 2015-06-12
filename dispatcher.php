@@ -13,6 +13,8 @@ class OneDispatcherJoomla extends One_Dispatcher
    */
   public function __construct(array $options = array())
 	{
+        $app        = JFactory::getApplication();
+
 		$defaults = array(
 			'id' => null,
 			'scheme' => null,
@@ -23,7 +25,7 @@ class OneDispatcherJoomla extends One_Dispatcher
 
 		// get menu parameters
 		$menu_options = array();
-		if(($menu = JSite::getMenu()->getActive()) &&  $menu->component == 'com_one')
+		if(($menu = $app->getMenu()->getActive()) &&  $menu->component == 'com_one')
 		{
 			$menu_options = array_merge($menu->params->toArray(), $menu->query);
 

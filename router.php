@@ -178,7 +178,6 @@ class OneRouter extends JComponentRouterBase
 //    echo '</pre>';
 
     if ($options !== null) {
-
       $vars = array();
       $vars['scheme'] = $options['schemeName'];
       $vars['task'] = $options['options']['task'];
