@@ -12,7 +12,10 @@
 	<fields name="request">
 		<fieldset name="request"
 			addfieldpath="/components/com_one/fields">
-
+            <field name="controller"
+                   type="hidden"
+                   default="default"
+                    />
             <field name="scheme" type="scheme"
                    label="Scheme"
                    required="true"
@@ -20,7 +23,7 @@
                    clear="false"
                    description="Scheme to use for the current menu-item"
                     />
-            <field name="view" type="text"
+            <field name="oview" type="text"
                    label="View"
                    required="false"
                    edit="true"

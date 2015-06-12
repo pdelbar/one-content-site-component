@@ -17,7 +17,7 @@ class OneDispatcherJoomla extends One_Dispatcher
 			'id' => null,
 			'scheme' => null,
 			'task' => null,
-			'view' => null,
+			'oview' => null,
 			'parseContentPlugins' => false,
 		);
 
@@ -65,18 +65,15 @@ class OneDispatcherJoomla extends One_Dispatcher
 
 	public function dispatch()
 	{
+    if ($this->_view == 'rest') {
+      return $this->dispatchRest();
+    }
+
 		try
 		{
-			$peakMemoryBefore = memory_get_peak_usage(true);
-
 			$scheme           = $this->_scheme;
 			$this->controller = One_Repository::getController($scheme, $this->_options);
 			$content          = $this->controller->execute($this->_task, $this->_options);
-
-			$peakMemoryAfter = memory_get_peak_usage(true);
-
-//			$peakMemory = ($peakMemoryAfter - $peakMemoryBefore) / 1024 / 1024;
-//			echo '<h1>Peak Memory Usage</h1><p>'.$peakMemory.'M</p>';
 
 			if(is_null($this->controller->getRedirect()))
 			{
@@ -89,7 +86,7 @@ class OneDispatcherJoomla extends One_Dispatcher
 					$dispatcher = JDispatcher::getInstance();
 					$params 	= JFactory::getApplication()->getParams();
 
-					$results = $dispatcher->trigger('onPrepareContent', array(&$dummy, $params, 0));
+				  $dispatcher->trigger('onContentPrepare', array( 'com_one.default', &$dummy, &$params, 0));
 					$content = $dummy->text;
 				}
 
@@ -103,7 +100,7 @@ class OneDispatcherJoomla extends One_Dispatcher
 		}
 		catch(Exception $e)
 		{
-			if(One::getInstance()->exitOnError() === false) {
+			if(One_Config::getInstance()->exitOnError() === false) {
 				echo $e->getMessage();
 			}
 			else {
@@ -112,7 +109,27 @@ class OneDispatcherJoomla extends One_Dispatcher
 		}
 	}
 
-	public function setRedirect(array $options)
+
+  public function dispatchRest()
+  {
+    try
+    {
+      $service = new One_Service_Rest();
+      $service->run();
+    }
+    catch(Exception $e)
+    {
+      if(One_Config::getInstance()->exitOnError() === false) {
+        echo $e->getMessage();
+      }
+      else {
+        throw new Exception($e);
+      }
+    }
+  }
+
+
+  public function setRedirect(array $options)
 	{
 		if(is_null($options))
 			$this->_redirect = NULL;

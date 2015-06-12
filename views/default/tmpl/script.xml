@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <layout title="COM_ONE_SCRIPT">
+        <message><![CDATA[COM_ONE_SCRIPT_DESC]]></message>
+    </layout>
+
+    <!--Shown underneath the menu type selector.-->
+    <fields name="request">
+        <fieldset name="request"
+                  addfieldpath="/components/com_one/fields">
+            <field name="controller"
+                   type="hidden"
+                   default="default"
+                    />
+        </fieldset>
+    </fields>
+
+    <!-- Add fields to the parameters object for the layout. -->
+    <fields name="params">
+
+        <fieldset name="advanced"
+                  addfieldpath="/components/com_one/fields">
+            <field name="parseContentPlugins" type="radio"
+                   label="Run content Plugins"
+                   description="Should the content be parsed by content plugins?"
+                   class="btn-group"
+                   default="0">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </field>
+        </fieldset>
+
+
+    </fields>
+</metadata>

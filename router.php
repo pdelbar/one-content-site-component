@@ -166,12 +166,19 @@ class OneRouter extends JComponentRouterBase
    */
   public function parse(&$segments)
   {
+    // Get the active menu item.
+    $app = JFactory::getApplication();
+    $menu = $app->getMenu();
+    $item = $menu->getActive();
+    if ($item->query['controller'] == 'rest') return array();
+
     $options = One_Routing::getOptionsForAlias(implode('/', $segments));
 //    echo '<pre>';
 //    print_r($options);
 //    echo '</pre>';
 
     if ($options !== null) {
+
       $vars = array();
       $vars['scheme'] = $options['schemeName'];
       $vars['task'] = $options['options']['task'];

@@ -20,8 +20,14 @@ OneHelpersStyle::load();
 //application
 $app = JFactory::getApplication();
 
+// Get the active menu item.
+$app = JFactory::getApplication();
+$menu = $app->getMenu();
+$item = $menu->getActive();
+$defaultController = $item->query['controller'] ? $item->query['controller'] : 'default';
+
 // Require specific controller if requested
-if($controller = $app->input->get('controller','default')) {
+if($controller = $app->input->get('controller',$defaultController)) {
   require_once (JPATH_COMPONENT.'/controller/'.$controller.'.php');
 }
 
