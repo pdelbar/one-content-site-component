@@ -24,7 +24,7 @@ $app = JFactory::getApplication();
 $app = JFactory::getApplication();
 $menu = $app->getMenu();
 $item = $menu->getActive();
-$defaultController = $item->query['controller'] ? $item->query['controller'] : 'default';
+$defaultController = (isset($item->query['controller']) &&  $item->query['controller']) ? $item->query['controller'] : 'default';
 
 // Require specific controller if requested
 if($controller = $app->input->get('controller',$defaultController)) {
